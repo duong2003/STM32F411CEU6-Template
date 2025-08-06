@@ -15,22 +15,23 @@ A complete development template for STM32F411CEU6 microcontroller using GCC tool
 
 ```
 STM32F411CEU6-Template/
-├── Src/                    # Source files
-│   ├── main.c              # Main application
-│   ├── init_config.c       # Hardware initialization
-│   ├── delay_lib.c         # Timer-based delay functions
-│   └── stm32f4xx_it.c      # Interrupt handlers
-├── Inc/                    # Header files
+├── Src/                          # Source files
+│   ├── main.c                    # Main application
+│   ├── init_config.c             # Hardware initialization
+│   ├── delay_lib.c               # Timer-based delay functions
+│   ├── stm32f4xx_it.c            # Interrupt vector routines and exception handlers
+│   └── system_stm32f4xx.c        # System and clock configuration (HSE=25MHz, SYSCLK=100MHz)
+├── Inc/                          # Header files
 │   ├── init_config.h
 │   ├── delay_lib.h
-│   └── stm32f4xx_conf.h    # SPL configuration
-├── Drivers/                # STM32 drivers
-│   ├── CMSIS/              # ARM CMSIS headers
-│   └── STM32F4xx_StdPeriph_Driver/  # Standard peripheral library
-├── build/                  # Build output directory
-├── Makefile               # Build configuration
-├── STM32F411XX_FLASH.ld   # Linker script
-└── startup_stm32f411xe.s  # Startup assembly file
+│   └── stm32f4xx_conf.h          # SPL configuration
+├── Drivers/                      # STM32 drivers
+│   ├── CMSIS/                    # ARM CMSIS headers
+│   └── STM32F4xx_StdPeriph_Driver/ # Standard peripheral library
+├── build/                        # Build output directory
+├── Makefile                      # Build configuration
+├── STM32F411XX_FLASH.ld          # Linker script
+└── startup_stm32f411xe.s         # Startup assembly file
 ```
 
 ## Hardware Requirements
@@ -45,10 +46,10 @@ STM32F411CEU6-Template/
 ### Required Tools
 
 1. **ARM GCC Toolchain**
-   - Download from: https://developer.arm.com/downloads/-/gnu-rm
+   - Download from: https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
    - Add to system PATH
 
-2. **Make Utility**
+2. **Make**
    - Windows: Install via MSYS2, MinGW, or use Windows Subsystem for Linux
    - Linux/macOS: Usually pre-installed
 
@@ -160,8 +161,8 @@ The build process generates several files in the `build/` directory:
 ### Clock Configuration
 
 - **HSE**: 25MHz external crystal
-- **System Clock**: Configured via system_stm32f4xx.c
-- **Peripheral Clocks**: Enabled as needed in init_config.c
+- **System Clock (SYSCLK)**: 100MHz (configured in `system_stm32f4xx.c`)
+- **Peripheral Clocks**: Enabled as needed in `init_config.c`
 
 ## Example Application
 
